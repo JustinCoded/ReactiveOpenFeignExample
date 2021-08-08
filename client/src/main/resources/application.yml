@@ -1,0 +1,23 @@
+server:
+  port: 0
+
+spring:
+  application:
+    name: feign-app
+  cloud:
+    discovery:
+      client:
+        simple:
+          instances:
+            employee-client:
+              - uri: "http://localhost:8080"
+
+logging:
+  level:
+    com.justincoded.reactiveopenfeigndemo.client: debug
+    root: info
+
+# Not used when using Spring Cloud Client Load Balancer.
+#  This is for manual config only via @ReactiveFeignClient(name = "employee-client", url = "\${employee-client.url}")
+employee-client:
+  url: "http://localhost:8080"
